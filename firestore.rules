@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function isAdmin() { return request.auth != null && request.auth.token.admin == true; }
+  match /supportChats/{chatId} {
+   allow read: if isAdmin() || (request.auth != null && request.auth.uid == chatId);
+   allow create: if request.auth != null && request.auth.uid == chatId && request.auth.token.firebase.sign_in_provider == 'anonymous'
+     && request.resource.data.keys().hasOnly(['guestUid','updatedAt','lastMessage'])
+     && request.resource.data.guestUid == chatId
+     && request.resource.data.lastMessage is string && request.resource.data.lastMessage.size() <= 140;
+   allow update: if isAdmin() || (request.auth != null && request.auth.uid == chatId
+     && request.auth.token.firebase.sign_in_provider == 'anonymous'
+     && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['updatedAt','lastMessage'])
+     && request.resource.data.lastMessage is string && request.resource.data.lastMessage.size() <= 140);
+   match /messages/{messageId} {
+    allow read: if isAdmin() || (request.auth != null && request.auth.uid == chatId);
+    allow create: if request.auth != null && (
+       (isAdmin() && request.resource.data.sender == 'admin') ||
+       (request.auth.uid == chatId && request.auth.token.firebase.sign_in_provider == 'anonymous' && request.resource.data.sender == 'guest'))
+      && request.resource.data.keys().hasOnly(['sender','text','createdAt'])
+      && request.resource.data.text is string && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 1000;
+    allow update,delete: if false;
+   }
+  }
+ }
+}
