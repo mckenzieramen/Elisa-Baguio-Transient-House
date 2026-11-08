@@ -20,3 +20,14 @@
 .auth-back{text-align:center;color:var(--deep);font-size:12px;font-weight:700}
 .admin-session{display:flex;align-items:center;gap:10px;font-size:12px;flex-wrap:wrap}
 .admin-top{flex-wrap:wrap}
+
+.room-editor{border:0;border-radius:18px;padding:28px;width:min(95vw,520px);max-height:90vh;box-shadow:0 20px 90px #30051b55}
+.room-editor::backdrop{background:#240a1a99}
+.room-editor form{display:grid;gap:14px}
+.room-editor h2{margin:0 0 8px;color:#741044}
+.room-editor label{display:grid;gap:6px;font-weight:700;font-size:13px}
+.room-editor input,.room-editor textarea{width:100%;padding:11px;border:1px solid #dccbd5;border-radius:9px;font:inherit}
+.room-editor #roomPreview{max-width:100%;max-height:180px;object-fit:cover;border-radius:10px}
+.room-actions{display:flex;justify-content:flex-end;gap:10px}
+#roomFormMessage{color:#b42343;font-size:13px}
+.unit-admin-grid article img{width:100%;height:190px;object-fit:cover}
