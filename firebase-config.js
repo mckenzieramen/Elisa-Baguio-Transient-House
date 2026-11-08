@@ -1,0 +1,1 @@
+export const firebaseConfig={apiKey:'AIzaSyC5rHxbtHdY8-9Gh4Wy01Cgugyt58sF90E',authDomain:'elisa-baguio-transient-house.firebaseapp.com',projectId:'elisa-baguio-transient-house',storageBucket:'elisa-baguio-transient-house.firebasestorage.app',messagingSenderId:'103034958888',appId:'1:103034958888:web:62e4806b7d6e1c7950711d'};
