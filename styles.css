@@ -36,3 +36,27 @@
 .amenity-strip{margin-top:-25px}
 @media(max-width:950px){.hero-inner{padding:45px 28px 65px}.hero-photos{display:none}.hero-copy{max-width:680px}}
 @media(max-width:650px){.hero{min-height:450px}.hero-inner{min-height:450px;padding:32px 20px 58px}.hero h1{font-size:clamp(38px,10vw,53px);letter-spacing:-.8px}.hero-info{gap:10px}.hero-copy>p:not(.eyebrow){font-size:15px}.amenity-strip{margin-top:-16px}}
+
+/* Approved banner: show the user's original promotional picture exactly once.
+   The artwork already contains its own text, rooms, amenities and contact info.
+   Do not layer the duplicate HTML headline or photo collage over it. */
+.hero{
+  background-image:url('assets/hero.jpg');
+  background-position:center center;
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  width:100%;
+  aspect-ratio:960 / 365;
+  height:auto;
+  min-height:0;
+  overflow:hidden;
+}
+.hero-shade,.hero-inner{display:none!important}
+.amenity-strip{margin-top:18px}
+@media(max-width:950px){
+  .hero{aspect-ratio:960 / 365;min-height:0;background-size:100% 100%}
+}
+@media(max-width:650px){
+  .hero{aspect-ratio:960 / 365;min-height:0;background-size:100% 100%}
+  .amenity-strip{margin-top:12px}
+}
